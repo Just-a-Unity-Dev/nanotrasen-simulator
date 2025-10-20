@@ -89,6 +89,7 @@ function importData(data) {
 			console.log(station.ppc)
 			addStation(new Station(
 				station.name,
+				station.crew || 5,
 				station.revenue,
 				station.unrest,
 				station.createdOn,

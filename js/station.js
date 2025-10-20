@@ -21,8 +21,9 @@ class Station {
 
 	requireUpkeep = true;
 
-	constructor(name,revenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,shuttleSent) {
+	constructor(name,crew,revenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,shuttleSent) {
 		this.name = name
+		this.crew = crew
 		this.revenue = revenue
 		this.unrest = unrest
 		this.upgrades = upgrades
@@ -210,6 +211,7 @@ class Station {
 	export() {
 		return {
 			name: this.name,
+			crew: this.crew,
 			revenue: this.revenue,
 			unrest: this.unrest,
 			upgrades: this.upgrades,
