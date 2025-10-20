@@ -40,14 +40,12 @@ class Station {
 		const div = document.getElementById(this.createdOn)
 
 		if (this.uptimeTick % 10 === 0) {
-			console.log("Every 10 ticks!")
 			// More crewmembers being paid well = More revenue, but more bad events
 			// Less crewmembers = Less revenue but less bad events
 			addCredits(this.booleans.revolution ? -this.revenue : this.revenue);
 		}
 
 		if (this.uptimeTick % 20 === 0) {
-			console.log("Every 20 ticks!")
 			if (this.requireUpkeep && this.booleans.revolution == false) {
 				if (this.payPerCrewmember < this.desiredPPC) {
 					addEventLog("Crewmembers aboard (STATION_NAME) believe that they aren't being paid good enough for their hard work! Civil unrest increased.", this, "#aa0000")
