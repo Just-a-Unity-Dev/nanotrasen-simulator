@@ -137,7 +137,7 @@ class InsanityWave extends Event {
 	message = "%events.insanityWave";
 	threat = 50;
 	color = "#aa0000"
-	
+
 	changedUnrest = 35
 }
 
@@ -164,10 +164,10 @@ class StationFunding extends Event {
 	threat = -1;
 
 	run(station) {
-		const creditsChange = Math.floor(Math.random() * (1000 - -100 + 1) + -1000);
+		const creditsChange = Math.floor((Math.random() * 1000) + 500);
 		addEventLog(this.message, station, "#aa0000");
-		addCredits(	creditsChange)
-		addRevenue(-creditsChange)
+		station.addCredits(-Math.abs(creditsChange))
+		station.addRevenue(15)
 	}
 }
 
