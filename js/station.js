@@ -198,7 +198,7 @@ class Station {
 	}
 
 	get desiredPPC() {
-		return 5 + Math.max(Math.floor((this.rawRevenue - (this.crew / 2)) / 10), 0)
+		return Math.max(0, 20 + Math.round(((this.revenue / 10) - this.crew) / 5))
 	}
 
 	get uptimeTick() {
@@ -216,7 +216,7 @@ class Station {
 	}
 	get revenue() {
 		return Math.round(
-			(this.rawRevenue * (1 + this.crew / 15))
+			(this.rawRevenue * Math.max(1, this.crew / 50))
 		)
 	}
 
