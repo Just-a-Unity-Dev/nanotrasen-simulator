@@ -13,7 +13,7 @@ class Station {
 		decomissioned: false,
 	}
 	createdOn = 0;
-	
+
 	payPerCrewmember = 15;
 	crewmemberPrice = 150;
 	crew = 5;
@@ -71,15 +71,15 @@ class Station {
 		div.getElementsByClassName("station_unrest")[0].innerHTML = `${this.unrest.toLocaleString()} <img src="assets/images/flag.svg" style="width: 18px; vertical-align: middle;" alt="flag icon"></img>`
 		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
 		div.getElementsByClassName("station_crew")[0].innerHTML = `${this.crew.toLocaleString()} <img src="assets/images/person.svg" style="width: 18px; vertical-align: middle;" alt="person icon"></img>`
-		
+
 		div.getElementsByClassName("station_ppc")[0].innerHTML = `CPPC: ${this.payPerCrewmember.toLocaleString()} | DPPC: ${this.desiredPPC.toLocaleString()}`;
 
 
 		// Revolution
-		div.getElementsByClassName("station_sell")[0].disabled = this.booleans.revolution
+		// div.getElementsByClassName("station_sell")[0].disabled = this.booleans.revolution
 		div.getElementsByClassName("station_crewadd")[0].disabled = this.booleans.revolution
 		div.getElementsByClassName("station_crewremove")[0].disabled = this.booleans.revolution
-		
+
 		div.getElementsByClassName("station_demands")[0].style.display = this.booleans.revolution ? "block" : "none"
 		// div.getElementsByClassName("station_ert")[0].style.display = this.booleans.revolution ? "block" : "none"
 		// div.getElementsByClassName("station_ds")[0].style.display = this.booleans.revolution ? "block" : "none"
@@ -102,9 +102,9 @@ class Station {
 		// And the div.
 
 		const div = document.getElementById(this.createdOn);
-		
+
 		if (div != null) {
-			div.remove();			
+			div.remove();
 		}
 		//if (station != null) station.remove() // Station shouldn't even be null unless EU is tinkering with it.
 		this.revenue = 0;
@@ -143,7 +143,7 @@ class Station {
 		if (this.unrest >= 0) {
 			this.unrest += unrest;
 			if (handleRevolution && this.unrest > 100) {
-				runEvent(new RevolutionSuccess(), this);	
+				runEvent(new RevolutionSuccess(), this);
 				this.unrest = 100;
 			} else if (!handleRevolution && this.unrest > 100) {
 				// borriiinnggg
