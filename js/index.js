@@ -86,11 +86,10 @@ function importData(data) {
 
 		for (let i = 0; i < packedData.stations.length; i++) {
 			const station = packedData.stations[i];
-			console.log(station.ppc)
 			addStation(new Station(
 				station.name,
 				station.crew || 5,
-				station.revenue,
+				station.rawRevenue,
 				station.unrest,
 				station.createdOn,
 				station.upgrades,
