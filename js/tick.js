@@ -1,7 +1,7 @@
 let tickNumber = 0; // So we know what tick it is. Can be manipulated by importData
 
 function tick() {
-	setTimeout(tick, 100); // Run every 100ms
+	setTimeout(tick, 100); // Run every 100ms, 10 ticks per second
 	tickNumber++; // Increment tickNumber
 
 	// Tick each station
