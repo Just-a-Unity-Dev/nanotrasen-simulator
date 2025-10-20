@@ -150,11 +150,9 @@ class BluespaceAnomaly extends Event {
 		addEventLog(this.message, station, "#0000ff")
 		spanomalies.play()
 		station.addUnrest(
-			Math.floor(Math.random() * (100 - -100 + 1) + -100)
+			Math.floor(randomInRangeF(0, 50))
 		);
-		station.addRevenue(
-			Math.floor(Math.random() * (1000 - -100 + 1) + -1000)
-		);
+		station.addRevenue(randomInRangeF(250, 500));
 	}
 }
 
@@ -166,7 +164,7 @@ class StationFunding extends Event {
 	run(station) {
 		const creditsChange = Math.floor((Math.random() * 1000) + 500);
 		addEventLog(this.message, station, "#aa0000");
-		station.addCredits(-Math.abs(creditsChange))
+		addCredits(-Math.abs(creditsChange))
 		station.addRevenue(15)
 	}
 }

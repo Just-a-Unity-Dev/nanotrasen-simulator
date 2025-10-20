@@ -254,6 +254,14 @@ window.addEventListener('load', function () {
 	console.log("Game initialized.")
 })
 
+function randomInRange(base, radius) {
+	return base + (Math.random() * (radius + 1)) - ((radius + 1) / 2)
+}
+
+function randomInRangeF(base, radius) {
+	return Math.round(randomInRange(base, radius))
+}
+
 //
 console.log('%cSkid skid skidddd! if you know how to use the dev console come see us on github!!', 'font-size: 32px; text-shadow: -5px -5px 0 #0019FF, 5px -5px 0 #0019FF, -5px 5px 0 #0019FF, 5px 5px 0 #0019FF;');
 console.log('%chttps://github.com/Just-a-Unity-Dev/nanotrasen-simulator', 'font-size: 16px; text-shadow: -5px -5px 0 #0019FF, 5px -5px 0 #0019FF, -5px 5px 0 #0019FF, 5px 5px 0 #0019FF;');
