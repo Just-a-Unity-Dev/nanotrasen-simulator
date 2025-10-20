@@ -189,7 +189,7 @@ class Station {
 	}
 
 	get calculatedRevenue() {
-		return this.revenue + this.crew * Math.floor(this.payPerCrewmember)
+		return this.revenue - this.crew * Math.floor(this.payPerCrewmember)
 	}
 
 	export() {
