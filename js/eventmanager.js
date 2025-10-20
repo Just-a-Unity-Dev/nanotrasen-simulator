@@ -25,9 +25,9 @@ class Event {
 
 /**
  * Adds a log in the Events category with a message and color.
- * @param {string} message 
- * @param {Station} station 
- * @param {string} color 
+ * @param {string} message
+ * @param {Station} station
+ * @param {string} color
  */
 function addEventLog(message, station, color) {
 	const id = (Math.random() + 1).toString(36).substring(7); // get random ID string
@@ -72,13 +72,10 @@ function shuffleArray(array) {
 function runRandomEvent() {
 	// Check if we have ANY stations at all. Stop yelling at me JS.
 	if (stations.length > 0) {
-		// Calculate threat level, either +10 or -10
-		// WHY THE FUCK IS MY THREAT LEVEL UNDEFINED?
-		// FUCK IT. IM RENAMING PREVIOUS THREAT LEVEL TO CURRENT THREAT LEVEL
 		threatLevel = parseInt(Math.floor(Math.random() * 2) == 0 ? threatLevel + 10 : threatLevel - 10);
 
 		console.log(threatLevel);
-		
+
 		// Clamp threatlevel
 		if (threatLevel > 100) threatLevel = 100;
 		if (threatLevel < 10) threatLevel = 10;
@@ -96,18 +93,18 @@ function runRandomEvent() {
 				(threatLevel == parseInt(event.threat) || parseInt(event.threat) == -1) &&
 				credits >= parseInt(event.minimumCredits) &&
 				station.unrest >= parseInt(event.minimumUnrest) &&
-				station.uptime >= parseInt(event.minimumUptime) &&
+				station.uptimeTime >= parseInt(event.minimumUptime) &&
 				station.crew >= parseInt(event.minimumCrew)
 			) {
 				// If so run event on the station
-				
+
 				runEvent(event, station);
 
 				// Break out of for loop since we're done with it.
 				break;
 			} else {
 				// Otherwise reset and try again
-				console.log(`"${event.name}" failed to run, failed checks. Threat level: ${threatLevel}, event threat level: ${station.threat}`)
+				console.log(`"${event.name}" failed to run, failed checks. Threat level: ${threatLevel}, event threat level: ${event.threat}`)
 			}
 		}
 	}
@@ -115,7 +112,7 @@ function runRandomEvent() {
 
 /**
  * Runs a specific event, if you want a random event use `runRandomEvent()`
- * @param {Event} event 
+ * @param {Event} event
  */
 function runEvent(event, station) {
 	addCredits(parseInt(event.changedCredits));
