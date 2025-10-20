@@ -11,7 +11,7 @@ let dsSquadrons = 0;
 
 /**
  * Adds an integer amount of credits
- * @param {number} credits_added 
+ * @param {number} credits_added
  */
 function addCredits(credits_added) {
 	credits += credits_added;
@@ -49,8 +49,8 @@ function exportData() {
 		stationPrice: 0,
 		capacityPrice: 0,
 		maxStations: 0,
-		tickNumber: 0, 
-		credits: 0, 
+		tickNumber: 0,
+		credits: 0,
 		threat: 20,
 		stations: []
 	}
@@ -72,13 +72,13 @@ function exportData() {
 
 /**
  * Imports data from a `base64 string` to memory, returns 0 if succeeded, returns 1 if else.
- * @param {base64 string} data 
+ * @param {base64 string} data
  */
 function importData(data) {
 	try {
 		const packedData = JSON.parse(atob(data));
 		console.log(packedData)
-		
+
 		// Actually clear stations.
 		while(stations.length > 0) {
 			stations.pop();
@@ -93,7 +93,7 @@ function importData(data) {
 				station.unrest,
 				station.createdOn,
 				station.upgrades,
-				station.payPerCrewmember,
+				station.offsetPPC,
 				station.booleans.revolution,
 				false,false,0
 			), false, false);
@@ -120,7 +120,7 @@ function importData(data) {
 
 /**
  * Returns the station index (stations[index]).
- * @param {Number} tickN 
+ * @param {Number} tickN
  * @returns station index, else -1
  */
 function getStationByTick(tickN) {
@@ -129,9 +129,9 @@ function getStationByTick(tickN) {
 
 /**
  * Adds a station to `stations` and adds the corrensponding HTML div
- * @param {Station} station 
- * @param {boolean} sound 
- * @param {boolean} disableButton 
+ * @param {Station} station
+ * @param {boolean} sound
+ * @param {boolean} disableButton
  */
 function addStation(station, sound=true, disableButton=true) {
 	stations.push(station);
@@ -155,21 +155,21 @@ function addStation(station, sound=true, disableButton=true) {
 		<!--
 		<button onclick="stations[getStationByTick('${station.createdOn}')]" class="station_ert">Send ERT</button>
 		<button onclick="stations[getStationByTick('${station.createdOn}')]" class="station_ds">Send Deathsquad</button>
-		
+
 		shenanigans
 		<button onclick="stations[getStationByTick('${station.createdOn}')]" class="station_dsOrder">Cancel Order</button><br>
 		-->
 		</details>
 	<details>
 		<summary>Crew Management</summary>
-		<button onclick="stations[getStationByTick('${station.createdOn}')].buyCrew(1)" class="station_crewadd">+</button> Crew (${station.crewmemberPrice}C) 
+		<button onclick="stations[getStationByTick('${station.createdOn}')].buyCrew(1)" class="station_crewadd">+</button> Crew (${station.crewmemberPrice}C)
 		<button onclick="stations[getStationByTick('${station.createdOn}')].addCrew(-1)" class="station_crewremove">-</button><br>
-		
-		<button onclick="stations[getStationByTick('${station.createdOn}')].payPerCrewmember+= 10;" class="station_adddPPC">++</button>
-		<button onclick="stations[getStationByTick('${station.createdOn}')].payPerCrewmember++;" class="station_addPPC">+</button>
+
+		<button onclick="stations[getStationByTick('${station.createdOn}')].offsetPPC+= 10;" class="station_adddPPC">++</button>
+		<button onclick="stations[getStationByTick('${station.createdOn}')].offsetPPC++;" class="station_addPPC">+</button>
 		<span class="station_ppc">CPPC: 0 | DPPC: 0</span>
-		<button onclick="stations[getStationByTick('${station.createdOn}')].payPerCrewmember--;" class="station_remPPC">-</button>
-		<button onclick="stations[getStationByTick('${station.createdOn}')].payPerCrewmember-= 10;" class="station_remmPPC">--</button>
+		<button onclick="stations[getStationByTick('${station.createdOn}')].offsetPPC--;" class="station_remPPC">-</button>
+		<button onclick="stations[getStationByTick('${station.createdOn}')].offsetPPC-= 10;" class="station_remmPPC">--</button>
 	</details>
 	`
 	// Add emergency shuttle status WYCI
@@ -177,7 +177,7 @@ function addStation(station, sound=true, disableButton=true) {
 	// <p class="station_shuttle">Emergency Shuttle Status: ${station.shuttleStatus}</p>
 	document.getElementById("stations").appendChild(div)
 	div.id = station.createdOn
-	
+
 	if (disableButton) {
 		document.getElementById("buyStation").disabled = true
 		setTimeout(function(){
@@ -203,7 +203,7 @@ function generateStationName() {
 	const suffix = STATION_SUFFIXES[
 		Math.floor(Math.random() * (STATION_SUFFIXES.length - 1))
 	]
-	
+
 	return `${prefix} ${name} ${suffix} ${Math.floor(Math.random() * 1000)}`
 }
 
@@ -214,7 +214,7 @@ function buyStation() {
 	// check if we have enough credits and we havent hit the maxcap
 	if (credits >= stationPrice && stationsBought < maxStations) {
 		// create a new station, this'll be appended
-		const station = new Station(generateStationName(), 100, 0, tickNumber, [], 15, false, false, false, 0);
+		const station = new Station(generateStationName(), 100, 0, tickNumber, [], 0, false, false, false, 0);
 
 		addStation(station) // add the station+renders
 		addEventLog(loc.formatString("%events.buyStation", [stationPrice]), station, "#00aa00")

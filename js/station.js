@@ -14,18 +14,18 @@ class Station {
 	}
 	createdOn = 0;
 
-	payPerCrewmember = 15;
+	offsetPPC = 0;
 	crewmemberPrice = 150;
 	crew = 5;
 
 	requireUpkeep = true;
 
-	constructor(name,revenue,unrest,tickCreated,upgrades,ppc,revs,ertSent,decomissioned,shuttleSent) {
+	constructor(name,revenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,shuttleSent) {
 		this.name = name
 		this.revenue = revenue
 		this.unrest = unrest
 		this.upgrades = upgrades
-		this.payPerCrewmember = ppc
+		this.offsetPPC = offsetPPC
 		this.shuttleSent = shuttleSent
 		this.booleans.revolution = revs
 		this.booleans.ertSent = ertSent
@@ -36,19 +36,17 @@ class Station {
 	tick(tickNumber) {
 		const div = document.getElementById(this.createdOn)
 
-		if ((this.createdOn - tickNumber * -1) % 20 === 0) {
+		console.log(this.createdOn + tickNumber)
+
+		if ((this.createdOn + tickNumber) % 20 === 0) {
 			// More crewmembers being paid well = More revenue, but more bad events
 			// Less crewmembers = Less revenue but less bad events
-			if (this.booleans.revolution) {
-				addCredits(-this.revenue);
-			} else {
-				addCredits(this.calculatedRevenue);
-			}
+			addCredits(this.booleans.revolution ? -this.revenue : this.revenue);
 		}
 
-		if ((this.createdOn - tickNumber * -1) % 10 === 0) {
+		if ((this.createdOn + tickNumber) % 10 === 0) {
+			console.log("Every 10 ticks!")
 			if (this.requireUpkeep && this.booleans.revolution == false) {
-				addCredits(-Math.floor(this.payPerCrewmember * this.crew));
 				if (this.payPerCrewmember < this.desiredPPC) {
 					addEventLog("Crewmembers aboard (STATION_NAME) believe that they aren't being paid good enough for their hard work! Civil unrest increased.", this, "#aa0000")
 					this.addUnrest(Math.floor(Math.random() * 8) + 1);
@@ -62,12 +60,12 @@ class Station {
 			}
 		}
 
-		if (this.payPerCrewmember < 0) {
-			this.payPerCrewmember = 0;
+		if (this.offsetPPC < -this.desiredPPC) {
+			this.offsetPPC = -this.desiredPPC;
 		}
 
 		// Paragraphs
-		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? -this.revenue.toLocaleString() : this.calculatedRevenue.toLocaleString()} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
+		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? -this.revenue.toLocaleString() : this.profit.toLocaleString()} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
 		div.getElementsByClassName("station_unrest")[0].innerHTML = `${this.unrest.toLocaleString()} <img src="assets/images/flag.svg" style="width: 18px; vertical-align: middle;" alt="flag icon"></img>`
 		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
 		div.getElementsByClassName("station_crew")[0].innerHTML = `${this.crew.toLocaleString()} <img src="assets/images/person.svg" style="width: 18px; vertical-align: middle;" alt="person icon"></img>`
@@ -188,8 +186,16 @@ class Station {
 		return Math.floor(((this.createdOn - tickNumber) * -1) / 10);
 	}
 
-	get calculatedRevenue() {
-		return this.revenue - this.crew * Math.floor(this.payPerCrewmember)
+	get expenses() {
+		return this.crew * Math.floor(this.payPerCrewmember);
+	}
+
+	get profit() {
+		return this.revenue - this.expenses
+	}
+
+	get payPerCrewmember() {
+		return this.desiredPPC + this.offsetPPC
 	}
 
 	export() {
@@ -199,7 +205,7 @@ class Station {
 			unrest: this.unrest,
 			upgrades: this.upgrades,
 			shuttleSent: this.shuttleSent,
-			ppc: this.payPerCrewmember,
+			offsetPPC: this.offsetPPC,
 			revs: this.booleans.revolution,
 			ertSent: this.booleans.ertSent,
 			decomissioned: this.booleans.decomissioned,
