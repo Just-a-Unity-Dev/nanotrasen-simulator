@@ -3,7 +3,7 @@
  */
 class Station {
 	name = "Station Station"
-	revenue = 1000
+	rawRevenue = 1000
 	unrest = 0
 	upgrades = [] // No upgrades. Fuck you.
 	shuttleSent = 0
@@ -21,10 +21,10 @@ class Station {
 
 	requireUpkeep = true;
 
-	constructor(name,crew,revenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,shuttleSent) {
+	constructor(name,crew,rawRevenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,shuttleSent) {
 		this.name = name
 		this.crew = crew
-		this.revenue = revenue
+		this.rawRevenue = rawRevenue
 		this.unrest = unrest
 		this.upgrades = upgrades
 		this.offsetPPC = offsetPPC
@@ -42,7 +42,7 @@ class Station {
 		if (this.uptimeTick % 10 === 0) {
 			// More crewmembers being paid well = More revenue, but more bad events
 			// Less crewmembers = Less revenue but less bad events
-			addCredits(this.booleans.revolution ? -this.revenue : this.revenue);
+			addCredits(this.booleans.revolution ? -this.rawRevenue : this.revenue);
 		}
 
 		if (this.uptimeTick % 20 === 0) {
@@ -106,7 +106,7 @@ class Station {
 			div.remove();
 		}
 		//if (station != null) station.remove() // Station shouldn't even be null unless EU is tinkering with it.
-		this.revenue = 0;
+		this.rawRevenue = 0;
 		this.requireUpkeep = false;
 
 		stationsBought--;
@@ -133,8 +133,8 @@ class Station {
 	}
 
 	addRevenue(revenue) {
-		if (this.revenue > 0) {
-			this.revenue += revenue;
+		if (this.rawRevenue > 0) {
+			this.rawRevenue += revenue;
 		}
 	}
 
@@ -196,9 +196,14 @@ class Station {
 			((this.crew * this.payPerCrewmember) / 2) // Divided by two because it's ticked every 20 ticks
 		);
 	}
+	get revenue() {
+		return Math.round(
+			(this.revenue * (1 + this.crew / 15))
+		)
+	}
 
 	get profit() {
-		return Math.round(this.revenue * (1 + this.crew / 15)) - this.expenses
+		return this.revenue - this.expenses
 	}
 
 	get payPerCrewmember() {
