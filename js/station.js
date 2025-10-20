@@ -36,16 +36,14 @@ class Station {
 	tick(tickNumber) {
 		const div = document.getElementById(this.createdOn)
 
-		console.log(this.createdOn + tickNumber)
-
-		if ((this.createdOn + tickNumber) % 10 === 0) {
+		if (this.uptimeTick % 10 === 0) {
 			console.log("Every 10 ticks!")
 			// More crewmembers being paid well = More revenue, but more bad events
 			// Less crewmembers = Less revenue but less bad events
 			addCredits(this.booleans.revolution ? -this.revenue : this.revenue);
 		}
 
-		if ((this.createdOn + tickNumber) % 20 === 0) {
+		if (this.uptimeTick % 20 === 0) {
 			console.log("Every 20 ticks!")
 			if (this.requireUpkeep && this.booleans.revolution == false) {
 				if (this.payPerCrewmember < this.desiredPPC) {
@@ -70,7 +68,7 @@ class Station {
 		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? `Cr${-this.revenue.toLocaleString()}` : `Cr${this.profit.toLocaleString()}`} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
 		div.getElementsByClassName("station_details")[0].innerHTML = `Makes Cr${this.revenue.toLocaleString()}, costs Cr${this.expenses.toLocaleString()}`
 		div.getElementsByClassName("station_unrest")[0].innerHTML = `${this.unrest.toLocaleString()} <img src="assets/images/flag.svg" style="width: 18px; vertical-align: middle;" alt="flag icon"></img>`
-		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
+		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptimeTime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
 		div.getElementsByClassName("station_crew")[0].innerHTML = `${this.crew.toLocaleString()} <img src="assets/images/person.svg" style="width: 18px; vertical-align: middle;" alt="person icon"></img>`
 
 		div.getElementsByClassName("station_ppc")[0].innerHTML = `Pay per crew: ${this.payPerCrewmember.toLocaleString()} | Desired PPC: ${this.desiredPPC.toLocaleString()}`;
@@ -185,8 +183,12 @@ class Station {
 		return 5 + Math.floor((this.revenue + this.crew) / 10)
 	}
 
-	get uptime() {
-		return Math.floor((this.createdOn + tickNumber) / 10);
+	get uptimeTick() {
+		return tickNumber - this.createdOn
+	}
+
+	get uptimeTime() {
+		return Math.floor(uptimeTick / 10);
 	}
 
 	get expenses() {
