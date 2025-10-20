@@ -71,7 +71,7 @@ class Station {
 		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
 		div.getElementsByClassName("station_crew")[0].innerHTML = `${this.crew.toLocaleString()} <img src="assets/images/person.svg" style="width: 18px; vertical-align: middle;" alt="person icon"></img>`
 
-		div.getElementsByClassName("station_ppc")[0].innerHTML = `CPPC: ${this.payPerCrewmember.toLocaleString()} | DPPC: ${this.desiredPPC.toLocaleString()}`;
+		div.getElementsByClassName("station_ppc")[0].innerHTML = `Pay per crew: ${this.payPerCrewmember.toLocaleString()} | Desired PPC: ${this.desiredPPC.toLocaleString()}`;
 
 
 		// Revolution
