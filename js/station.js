@@ -38,14 +38,15 @@ class Station {
 
 		console.log(this.createdOn + tickNumber)
 
-		if ((this.createdOn + tickNumber) % 20 === 0) {
+		if ((this.createdOn + tickNumber) % 10 === 0) {
+			console.log("Every 10 ticks!")
 			// More crewmembers being paid well = More revenue, but more bad events
 			// Less crewmembers = Less revenue but less bad events
 			addCredits(this.booleans.revolution ? -this.revenue : this.revenue);
 		}
 
-		if ((this.createdOn + tickNumber) % 10 === 0) {
-			console.log("Every 10 ticks!")
+		if ((this.createdOn + tickNumber) % 20 === 0) {
+			console.log("Every 20 ticks!")
 			if (this.requireUpkeep && this.booleans.revolution == false) {
 				if (this.payPerCrewmember < this.desiredPPC) {
 					addEventLog("Crewmembers aboard (STATION_NAME) believe that they aren't being paid good enough for their hard work! Civil unrest increased.", this, "#aa0000")
@@ -183,11 +184,13 @@ class Station {
 	}
 
 	get uptime() {
-		return Math.floor(((this.createdOn - tickNumber) * -1) / 10);
+		return Math.floor((this.createdOn + tickNumber) / 10);
 	}
 
 	get expenses() {
-		return this.crew * Math.floor(this.payPerCrewmember);
+		return Math.floor(
+			((this.crew * this.payPerCrewmember) / 2) // Divided by two because it's ticked every 20 ticks
+		);
 	}
 
 	get profit() {
