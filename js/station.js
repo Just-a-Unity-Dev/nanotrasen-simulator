@@ -60,10 +60,6 @@ class Station {
 			}
 		}
 
-		if (this.offsetPPC < -this.desiredPPC) {
-			this.offsetPPC = -this.desiredPPC;
-		}
-
 		// Paragraphs
 		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? `-Cr${this.revenue.toLocaleString()}` : `Cr${this.profit.toLocaleString()}`} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
 		div.getElementsByClassName("station_details")[0].innerHTML = `Makes Cr${this.revenue.toLocaleString()}, costs Cr${this.expenses.toLocaleString()}`
@@ -215,7 +211,7 @@ class Station {
 
 	get expenses() {
 		return Math.floor(
-			((this.crew * this.payPerCrewmember) / 2) // Divided by two because it's ticked every 20 ticks
+			Math.min((this.crew * this.payPerCrewmember, 0) / 2) // Divided by two because it's ticked every 20 ticks
 		);
 	}
 	get revenue() {
