@@ -17,6 +17,7 @@ class Station {
 	offsetPPC = 0;
 	crewmemberPrice = 150;
 	crew = 5;
+	currentTick = 0;
 
 	requireUpkeep = true;
 
@@ -34,6 +35,7 @@ class Station {
 	}
 
 	tick(tickNumber) {
+		this.currentTick = tickNumber; // Assign current tick BEFORE anything tick-related begins.
 		const div = document.getElementById(this.createdOn)
 
 		if (this.uptimeTick % 10 === 0) {
@@ -184,11 +186,11 @@ class Station {
 	}
 
 	get uptimeTick() {
-		return tickNumber - this.createdOn
+		return this.currentTick - this.createdOn
 	}
 
 	get uptimeTime() {
-		return Math.floor(uptimeTick / 10);
+		return Math.floor(this.uptimeTick / 10);
 	}
 
 	get expenses() {
