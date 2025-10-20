@@ -142,7 +142,8 @@ function addStation(station, sound=true, disableButton=true) {
 	<span class="station_revenue"></span>|
 	<span class="station_unrest"></span>|
 	<span class="station_uptime"></span>|
-	<span class="station_crew"></span>
+	<span class="station_crew"></span><br>
+	<span class="station_details"></span><br>
 	<span class="station_overtaken" style="color: #a00">OVERTAKEN</span>
 
 	<!-- holy shit button hell -->

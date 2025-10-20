@@ -67,11 +67,8 @@ class Station {
 
 		// Paragraphs
 		let revenueText = "";
-		if (this.booleans.revolution)
-			revenueText = -this.revenue.toLocaleString()
-		else
-			revenueText = `Cr${this.profit.toLocaleString()} (Cr${this.revenue.toLocaleString()}-Cr${this.expenses.toLocaleString()})`
-		div.getElementsByClassName("station_revenue")[0].innerHTML = `${revenueText} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
+		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? `Cr${-this.revenue.toLocaleString()}` : `Cr${this.profit.toLocaleString()}`} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
+		div.getElementsByClassName("station_details")[0].innerHTML = `Makes Cr${this.revenue.toLocaleString()}, costs Cr${this.expenses.toLocaleString()}`
 		div.getElementsByClassName("station_unrest")[0].innerHTML = `${this.unrest.toLocaleString()} <img src="assets/images/flag.svg" style="width: 18px; vertical-align: middle;" alt="flag icon"></img>`
 		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
 		div.getElementsByClassName("station_crew")[0].innerHTML = `${this.crew.toLocaleString()} <img src="assets/images/person.svg" style="width: 18px; vertical-align: middle;" alt="person icon"></img>`
