@@ -180,7 +180,7 @@ class Station {
 	}
 
 	get desiredPPC() {
-		return 5 + Math.floor((this.revenue + this.crew) / 10)
+		return 5 + Math.floor((this.revenue - this.crew) / 10)
 	}
 
 	get uptimeTick() {
@@ -198,7 +198,7 @@ class Station {
 	}
 
 	get profit() {
-		return this.revenue - this.expenses
+		return Math.round(this.revenue * (1 + this.crew / 15)) - this.expenses
 	}
 
 	get payPerCrewmember() {
