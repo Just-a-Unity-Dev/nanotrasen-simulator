@@ -216,7 +216,7 @@ function buyStation() {
 	// check if we have enough credits and we havent hit the maxcap
 	if (credits >= stationPrice && stationsBought < maxStations) {
 		// create a new station, this'll be appended
-		const station = new Station(generateStationName(), 100, 0, tickNumber, [], 0, false, false, false, 0);
+		const station = new Station(generateStationName(), 5, 100, 0, tickNumber, [], 0, false, false, false, 0);
 
 		addStation(station) // add the station+renders
 		addEventLog(loc.formatString("%events.buyStation", [stationPrice]), station, "#00aa00")
