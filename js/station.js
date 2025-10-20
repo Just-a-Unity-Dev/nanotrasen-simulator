@@ -65,7 +65,7 @@ class Station {
 		}
 
 		// Paragraphs
-		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? `Cr${-this.revenue.toLocaleString()}` : `Cr${this.profit.toLocaleString()}`} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
+		div.getElementsByClassName("station_revenue")[0].innerHTML = `${this.booleans.revolution ? `-Cr${this.revenue.toLocaleString()}` : `Cr${this.profit.toLocaleString()}`} <img src="assets/images/payment.svg" style="width: 18px; vertical-align: middle;" alt="payment icon"></img>`
 		div.getElementsByClassName("station_details")[0].innerHTML = `Makes Cr${this.revenue.toLocaleString()}, costs Cr${this.expenses.toLocaleString()}`
 		div.getElementsByClassName("station_unrest")[0].innerHTML = `${this.unrest.toLocaleString()} <img src="assets/images/flag.svg" style="width: 18px; vertical-align: middle;" alt="flag icon"></img>`
 		div.getElementsByClassName("station_uptime")[0].innerHTML = `${this.uptimeTime.toLocaleString()} <img src="assets/images/timer.svg" style="width: 18px; vertical-align: middle;" alt="timer icon"></img>`
@@ -76,13 +76,13 @@ class Station {
 
 		// Revolution
 		// div.getElementsByClassName("station_sell")[0].disabled = this.booleans.revolution
+		div.getElementsByClassName("station_invest")[0].disabled = this.booleans.revolution
 		div.getElementsByClassName("station_crewadd")[0].disabled = this.booleans.revolution
 		div.getElementsByClassName("station_crewremove")[0].disabled = this.booleans.revolution
 
 		div.getElementsByClassName("station_demands")[0].style.display = this.booleans.revolution ? "block" : "none"
 		// div.getElementsByClassName("station_ert")[0].style.display = this.booleans.revolution ? "block" : "none"
-		// div.getElementsByClassName("station_ds")[0].style.display = this.booleans.revolution ? "block" : "none"
-		// div.getElementsByClassName("station_ds")[0].style.display = this.booleans.revolution ? "block" : "none"
+		div.getElementsByClassName("station_ds")[0].style.display = this.booleans.revolution ? "block" : "none"
 
 		div.getElementsByClassName("station_addPPC")[0].disabled = this.booleans.revolution
 		div.getElementsByClassName("station_adddPPC")[0].disabled = this.booleans.revolution
@@ -143,6 +143,8 @@ class Station {
 			}
 		}
 	}
+
+	sendDeathsquad() {}
 
 	addRevenue(revenue) {
 		if (this.rawRevenue > 0) {
