@@ -252,6 +252,6 @@ window.addEventListener('load', function () {
 	console.log("Game initialized.")
 })
 
-// Haha. Funny.
-console.log('%cHeh. A snooper. Go check out the source code instead of using addCredits(), skid.', 'font-size: 32px; text-shadow: -5px -5px 0 #0019FF, 5px -5px 0 #0019FF, -5px 5px 0 #0019FF, 5px 5px 0 #0019FF;');
-console.log('%chttps://github.com/2G2C/nanotrasen-simulator', 'font-size: 16px; text-shadow: -5px -5px 0 #0019FF, 5px -5px 0 #0019FF, -5px 5px 0 #0019FF, 5px 5px 0 #0019FF;');
+//
+console.log('%cSkid skid skidddd! if you know how to use the dev console come see us on github!!', 'font-size: 32px; text-shadow: -5px -5px 0 #0019FF, 5px -5px 0 #0019FF, -5px 5px 0 #0019FF, 5px 5px 0 #0019FF;');
+console.log('%chttps://github.com/Just-a-Unity-Dev/nanotrasen-simulator', 'font-size: 16px; text-shadow: -5px -5px 0 #0019FF, 5px -5px 0 #0019FF, -5px 5px 0 #0019FF, 5px 5px 0 #0019FF;');
