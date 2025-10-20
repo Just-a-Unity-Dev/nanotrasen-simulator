@@ -209,20 +209,4 @@ class Station {
 	get payPerCrewmember() {
 		return this.desiredPPC + this.offsetPPC
 	}
-
-	export() {
-		return {
-			name: this.name,
-			crew: this.crew,
-			revenue: this.revenue,
-			unrest: this.unrest,
-			upgrades: this.upgrades,
-			shuttleSent: this.shuttleSent,
-			offsetPPC: this.offsetPPC,
-			revs: this.booleans.revolution,
-			ertSent: this.booleans.ertSent,
-			decomissioned: this.booleans.decomissioned,
-			tickCreated: this.createdOn
-		}
-	}
 }
