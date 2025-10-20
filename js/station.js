@@ -144,7 +144,15 @@ class Station {
 		}
 	}
 
-	sendDeathsquad() {}
+	sendDeathsquad() {
+		deathsquad.play()
+		addEventLog(`The deathsquad was sent to exterminate (STATION_NAME) from traitors of Nanotrasen. The team succeeded.`, this, "#3c4fffff");
+		this.offsetPPC = 0;
+		addCredits(-100_000_000) // Figure out actual team management and stuff
+		this.booleans.revolution = false;
+		this.addUnrest(-100);
+		this.crew = 1;
+	}
 
 	addRevenue(revenue) {
 		if (this.rawRevenue > 0) {

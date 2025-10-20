@@ -13,3 +13,4 @@ const operatives = new Audio("assets/audio/sound_ambience_antag_ops.ogg");
 const wizards = new Audio("assets/audio/sound_ambience_antag_ragesmages.ogg");
 
 const explosion = new Audio("assets/audio/sound_effects_explosion1.ogg");
+const deathsquad = new Audio("assets/audio/deathsquad.ogg");

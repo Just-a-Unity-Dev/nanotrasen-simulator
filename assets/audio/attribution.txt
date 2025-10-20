@@ -1,0 +1,7 @@
+Anything prefixed with sound_ wass taken from https://github.com/tgstation/tgstation/blob/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a
+
+deathsquad.ogg uses audios from multiple sources, credited here:
+* https://github.com/tgstation/tgstation/blob/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a for e-blade sounds
+* https://freesound.org/people/jacobmathiassen/sounds/254869/ for male crying
+* https://github.com/tgstation/tgstation/commit/3d049e69fe71a0be2133005e65ea469135d648c8 for all screams
+* Laser sounds and body collapse sounds unknown, likely from tgstation above
