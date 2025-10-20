@@ -24,7 +24,7 @@
     "%events.bsLuckyDay":"It's your lucky day! (STATION_NAME) seems to have something special about it!",
     "%events.rumor":"Rumors about bullshit.",
     "%events.antagMajor":"So spooky.",
-    "%events.thiefCaughtFail":"A thief has been caught on (STATION_NAME), but their attempts to steal were futile! Civil unrest has decreased.",
+    "%events.thiefCaughtFail":"A thief has been caught on (STATION_NAME), and the stolen goods have been secured! Civil unrest has decreased.",
     "%events.thiefCaughtSucceed":"A thief has been caught on (STATION_NAME), but they got away! Credits decreased, Civil unrest has increased.",
     "%events.enemyCommunicationIntercepted":"Attention, enemy communication intercepted. Security level elevated. Civil unrest increased.",
     "%events.plasmaBubble":"(STATION_NAME) has entered an area of space with more plasma than the last, increased revenue!",
