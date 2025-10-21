@@ -19,6 +19,7 @@
     "%body.buyInvestment":"Mass Buy: Investment",
     "%body.buyCrew":"Mass Buy: Crew",
     "%body.events":"Events",
+    "%body.clearEvents":"Clear all events",
 
     "%events.nothingHappening":"There seems to be nothing happening currently...",
     "%events.buyStationCapacity":"Nanotrasen purchased extra station capacity for ${capacityPrice} credits.",

@@ -43,7 +43,11 @@ function addEventLog(message, station, color) {
 	paragraph.style.color = color
 	paragraph.id = id;
 
-	document.getElementById("events").prepend(paragraph)
+	document.getElementById("eventsbox").prepend(paragraph)
+}
+
+function clearEvents() {
+	document.getElementById("eventsbox").innerHTML = "";
 }
 
 // thanks stack overflow.
@@ -88,7 +92,7 @@ function runRandomEvent() {
 			let station = stations[Math.floor(Math.random() * stations.length)]
 			if (!station.canRunEvent)
 				continue;
-			
+
 			const event = eventPool[i];
 
 			// Event checks
