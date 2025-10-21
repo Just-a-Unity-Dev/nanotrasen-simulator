@@ -73,6 +73,7 @@ class Station {
 
 		// Revolution
 		// div.getElementsByClassName("station_sell")[0].disabled = this.booleans.revolution
+		div.getElementsByClassName("station_abandon")[0].style.display = this.booleans.missing ? "block" : "none"
 		div.getElementsByClassName("station_invest")[0].disabled = this.booleans.revolution || this.booleans.missing
 		div.getElementsByClassName("station_crewadd")[0].disabled = this.booleans.revolution || this.booleans.missing
 		div.getElementsByClassName("station_crewremove")[0].disabled = this.booleans.revolution || this.booleans.missing
@@ -110,6 +111,12 @@ class Station {
 		stationsBought--;
 		document.getElementById("stationsAmount").innerHTML = `${stationsBought}/${maxStations}`
 		stations = stations.filter((element) => {return this != element})
+	}
+
+	abandon() {
+		erase.play();
+		addEventLog("You abandon (STATION_NAME) after they disappear off the comm-link.", this, `red`)
+		this.destroy()
 	}
 
 	payDemands() {
