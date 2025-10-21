@@ -49,11 +49,11 @@ class Station {
 		if (this.uptimeTick % 20 === 0 && !this.booleans.missing) {
 			if (this.requireUpkeep && this.booleans.revolution == false) {
 				if (this.payPerCrewmember < this.desiredPPC) {
-					addEventLog("Crewmembers aboard (STATION_NAME) believe that they aren't being paid good enough for their hard work! Civil unrest increased.", this, "#aa0000")
+					addEventLog("Crewmembers aboard (STATION_NAME) believe that they aren't being paid good enough for their hard work! Distrust increased.", this, "#aa0000")
 					this.addUnrest(Math.floor(Math.random() * 8) + 1);
 				} else {
 					// Removed due to the stupid amount of log spamming there was
-					// addEventLog(`Nanotrasen paid ${this.crew} crewmembers ${this.payPerCrewmember} credits aboard (STATION_NAME). Civil unrest decreased.`, this, "#aa0000")
+					// addEventLog(`Nanotrasen paid ${this.crew} crewmembers ${this.payPerCrewmember} credits aboard (STATION_NAME). Distrust decreased.`, this, "#aa0000")
 					this.addUnrest(-1);
 				}
 			} else if (this.booleans.revolution) {
