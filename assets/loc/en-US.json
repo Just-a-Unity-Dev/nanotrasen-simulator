@@ -24,6 +24,8 @@
     "%events.buyStationCapacity":"Nanotrasen purchased extra station capacity for ${capacityPrice} credits.",
     "%events.massBuyCrew":"Nanotrasen purchased five crewmembers for each station for ${price} credits.",
     "%events.massBuyCrewALOF":"Nanotrasen purchased five crewmembers for each station for ${price} credits, except ${amount} stations.",
+    "%events.massBuyInvestment":"Nanotrasen invested into every station at the price of ${price} credits.",
+    "%events.massBuyInvestmentALOF":"Nanotrasen invested into every station at the price of ${price} credits, but ${amount} stations could not be invested into.",
     "%events.buyStation":"Nanotrasen purchased (STATION_NAME) for ${stationPrice} credits.",
     "%events.bsLuckyDay":"It's your lucky day! (STATION_NAME) seems to have something special about it!",
     "%events.rumor":"Rumors about bullshit.",

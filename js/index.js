@@ -42,6 +42,22 @@ function buyStationCapacity() {
 let dummyStation;
 
 function massBuyInvestment() {
+	let failedStations = 0;
+	let totalPrice = 0;
+	stations.forEach(station => {
+		const price = station.investmentPrice;
+		if (credits > price) {
+			station.investStation();
+			totalPrice += price;
+		} else {
+			failedStations++;
+		}
+	});
+	if (failedStations <= 0) {
+		addEventLog(loc.formatString("%events.massBuyInvestment", [totalPrice]), dummyStation, "#00aa00")
+	} else {
+		addEventLog(loc.formatString("%events.massBuyInvestmentALOF", [totalPrice, failedStations]), dummyStation, "#00aa00")
+	}
 }
 
 function massBuyCrew() {

@@ -134,8 +134,8 @@ class Station {
 	}
 
 	investStation() {
-		if (credits > investmentPrice) {
-			addCredits(-investmentPrice)
+		if (credits > this.investmentPrice) {
+			addCredits(-this.investmentPrice)
 			if (Math.floor(Math.random() * 100) == 0) {
 				this.addRevenue(100);
 				addEventLog(`Nanotrasen invests into critical key infrastructure at (STATION_NAME), this pays off!`, this, `gold`)
