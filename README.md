@@ -6,21 +6,13 @@ A [universal paperclips](https://www.decisionproblem.com/paperclips/)-like game 
 
 ## What is this?
 
-Idle clicker game thing set in the Space Station 13 universe, check SS13 out. It's fun.
+Idle clicker game thing set in the Space Station 13 universe, check SS13 (and SS14) out. They're fun, and they've brought me a good 2000 hours of joy, the only game I have 2000 hours on.
 
 ## Contributors
 
-NT Simulator is massive spaghetti code, with barely anything documented. I'd appreciate if you made documentation instead of content PRs. Thanks.
+NTS is full of undocumented and really big spaghetti code. While it would be nice if you could take your time to document things, it's perfectly fine if you just want to work on cool content to make this game worse.
 
-*Side note*
-
-You require a webserver to run NT Simulator as `fetch` on an HTML file on firefox breaks shit. Use something like a VSCode Live Server.
-
-## Features
-
-- Station management system
-- Localization
-- Event system
+You require a webserver to run NT Simulator as fetch doesn't work on raw HTML. You can set up a live server using python or an extension through your editor/IDE.
 
 ## License
 
