@@ -312,7 +312,7 @@ function randint(min_r, max_r) {
 }
 
 function randomInRangeF(base, radius) {
-	return randrange(base - radius, base + radius)
+	return randint(base - radius, base + radius)
 }
 
 //
