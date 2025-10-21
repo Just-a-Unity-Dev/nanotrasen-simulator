@@ -217,7 +217,7 @@ class Station {
 
 	get expenses() {
 		return Math.floor(
-			Math.min((this.crew * this.payPerCrewmember, 0) / 2) // Divided by two because it's ticked every 20 ticks
+			Math.min((this.crew * this.payPerCrewmember) / 2, 0) // Divided by two because it's ticked every 20 ticks
 		);
 	}
 	get revenue() {
