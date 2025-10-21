@@ -305,18 +305,14 @@ window.addEventListener('load', function () {
 	console.log("Game initialized.")
 })
 
-function randrange(min_r, max_r) {
+function randint(min_r, max_r) {
 	let min = Math.ceil(min_r);
 	let max = Math.floor(max_r);
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function randomInRange(base, radius) {
-	return randrange(base - radius, base + radius)
-}
-
 function randomInRangeF(base, radius) {
-	return Math.round(randomInRange(base, radius))
+	return randrange(base - radius, base + radius)
 }
 
 //
