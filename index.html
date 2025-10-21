@@ -27,7 +27,7 @@
 	<h1>%body.title</h1>
 	<p id="note">%body.note</p>
 
-	<!-- TODO: Settings menu and move the saving buttons. Anthemic, go do this. -->
+	<!-- TODO: better location for settings menu -->
 	<button onclick="navigator.clipboard.writeText(exportData()); alert('Saved to clipboard!')">%body.exportData</button>
 	<button onclick="const data=prompt('Data to import (MUST BE VALID)'); importData(data)">%body.importData</button>
 	<button onclick="localStorage.setItem('nt_sim_data', exportData()); alert('Saved data to localstorage!')">%body.saveData</button>
@@ -35,9 +35,10 @@
 
 	<p>%body.credits <span id="credits"></span></p>
 	<h2>%body.shop</h2>
-	<button id="buy_station_capacity" onclick="buyStationCapacity()"><span>%body.moreStationCapacity </span><span id="capacityPrice">5000</span></button><br><br>
-	<button id="buy_station_investment" onclick="massBuyInvestment()"><span>%body.buyInvestment </span></button><br><br>
-	<button id="buy_station_crew" onclick="massBuyCrew()"><span>%body.buyCrew</span></button><br><br>
+	<button id="buy_station_capacity" onclick="buyStationCapacity()"><span>%body.moreStationCapacity </span><span id="capacityPrice">5000</span></button>
+	<button id="buy_station_investment" onclick="massBuyInvestment()"><span>%body.buyInvestment </span></button>
+	<button id="buy_station_crew" onclick="massBuyCrew()"><span>%body.buyCrew</span></button>
+	<br><br>
 	<div class="content">
 		<details id="stationcontent">
 			<summary>%body.stations (<span id="stationsAmount">0/5</span>)</summary>
