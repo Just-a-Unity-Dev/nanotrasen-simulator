@@ -156,26 +156,25 @@ class Station {
 	}
 	sendErt() {
 		const selection = randint(0, 3);
+		if (threatLevel > 80) {
+			selection++;
+		}
 
 		let extraMessage = ""
 
 		switch (selection) {
 			case 0:
-				extraMessage = "and reported everything was actually okay!"
-				break;
-			case 1:
-				extraMessage = "but reported a majority of the crew were killed."
-				this.crew = Math.ceil(this.crew * Math.random());
-				break;
-			case 2:
-				extraMessage = "but reported the station faced critical damage to infrastructure."
-				this.rawRevenue = Math.ceil(this.rawRevenue / (2 + Math.random()));
-				break;
-			case 3:
 				extraMessage = "and reported everything was actually way better than normal!"
 				this.rawRevenue = Math.ceil(this.rawRevenue * (2 + Math.random()));
 				break;
-			case 4:
+			case 1:
+				extraMessage = "and reported everything was actually okay!"
+				break;
+			case 2:
+				extraMessage = "but reported a majority of the crew were killed."
+				this.crew = Math.ceil(this.crew * Math.random());
+				break;
+			case 3:
 				extraMessage = "but reported the station required repairs."
 				if (credits > 100_000) {
 					addCredits(-100_000);
@@ -185,6 +184,13 @@ class Station {
 					addCredits(-1_000);
 				}
 				break;
+			case 4:
+				extraMessage = "but reported the station faced critical damage to infrastructure."
+				this.rawRevenue = Math.ceil(this.rawRevenue / (2 + Math.random()));
+				break;
+			case 5:
+				extraMessage = "but reported the rumors were true: the station was destroyed."
+				this.destroy();
 		}
 		this.booleans.missing = false;
 		addCredits(-500_000) // Figure out actual team management and stuff

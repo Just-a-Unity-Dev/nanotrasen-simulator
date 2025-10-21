@@ -259,7 +259,7 @@ class NuclearEmergencySuccess extends AntagMajor {
 	run(station) {
 		operatives.play();
 		addEventLog(this.message, station, this.color);
-		station.destroy();
+		station.booleans.missing = true;
 	}
 }
 
