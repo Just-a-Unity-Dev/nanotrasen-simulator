@@ -90,7 +90,7 @@ function runRandomEvent() {
 
 			// Event checks
 			if (
-				(threatLevel == parseInt(event.threat) || parseInt(event.threat) == -1) &&
+				(threatLevel <= parseInt(event.threat) || parseInt(event.threat) == -1) &&
 				credits >= parseInt(event.minimumCredits) &&
 				station.unrest >= parseInt(event.minimumUnrest) &&
 				station.uptimeTime >= parseInt(event.minimumUptime) &&
