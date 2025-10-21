@@ -154,7 +154,14 @@ class Station {
 		this.addUnrest(-100);
 		this.crew = 1;
 	}
-	sendErt() {}
+	sendErt() {
+		addEventLog(`ERT was dispatched to exterminate (STATION_NAME) from traitors of Nanotrasen. The team succeeded.`, this, "#3c4fffff");
+		this.crew = Math.ceil(this.crew * Math.random());
+		this.rawRevenue = Math.ceil(this.rawRevenue / (2 + Math.random()));
+		this.booleans.missing = false;
+		addCredits(-500_000) // Figure out actual team management and stuff
+		this.addUnrest(-100);
+	}
 
 	addRevenue(revenue) {
 		if (this.rawRevenue > 0) {
