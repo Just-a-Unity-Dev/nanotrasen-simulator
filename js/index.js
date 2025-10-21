@@ -41,13 +41,15 @@ function buyStationCapacity() {
 
 let dummyStation;
 
-function massBuyInvestment() {
+function massBuyInvestment(multiplier = 1) {
 	let failedStations = 0;
 	let totalPrice = 0;
 	stations.forEach(station => {
-		const price = station.investmentPrice;
+		const price = station.investmentPrice * multiplier;
 		if (credits > price) {
-			station.investStation();
+			for (let i = 0; i < multiplier; i++) {
+				station.investStation(); // increased critchance
+			}
 			totalPrice += price;
 		} else {
 			failedStations++;
