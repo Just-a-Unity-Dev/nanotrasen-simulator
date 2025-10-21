@@ -16,8 +16,9 @@
     "%body.trainDS":"Train Deathsquad",
     "%body.stations":"Stations",
     "%body.buyStation":"Buy Station",
-    "%body.buyInvestment":"Mass Buy: Investment",
-    "%body.buyCrew":"Mass Buy: Crew",
+    "%body.buyInvestment":"Mass Invest",
+    "%body.buyInvestmentx5":"Mass Invest (x5)",
+    "%body.buyCrew":"Mass Buy: Crew (x5)",
     "%body.events":"Events",
     "%body.clearEvents":"Clear all events",
 
