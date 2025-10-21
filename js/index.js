@@ -95,7 +95,10 @@ function importData(data) {
 				station.upgrades,
 				station.offsetPPC,
 				station.booleans.revolution,
-				false,false,0
+				false,
+				false,
+				station.booleans.missing,
+				0
 			), false, false);
 		}
 
@@ -222,7 +225,7 @@ function buyStation() {
 			revenue += 1000;
 			addEventLog(loc.formatString("%events.bsLuckyDay", [stationPrice]), station, "#00aa00")
 		}
-		const station = new Station(name, 5, revenue, 0, tickNumber, [], 0, false, false, false, 0);
+		const station = new Station(name, 5, revenue, 0, tickNumber, [], 0, false, false, false, false, 0);
 
 		addStation(station) // add the station+renders
 		addEventLog(loc.formatString("%events.buyStation", [stationPrice]), station, "#00aa00")

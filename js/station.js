@@ -21,7 +21,7 @@ class Station {
 
 	requireUpkeep = true;
 
-	constructor(name,crew,rawRevenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,shuttleSent) {
+	constructor(name,crew,rawRevenue,unrest,tickCreated,upgrades,offsetPPC,revs,ertSent,decomissioned,missing,shuttleSent) {
 		this.name = name
 		this.crew = crew
 		this.rawRevenue = rawRevenue
@@ -32,6 +32,7 @@ class Station {
 		this.booleans.revolution = revs
 		this.booleans.ertSent = ertSent
 		this.booleans.decomissioned = decomissioned
+		this.booleans.missing = missing
 		this.createdOn = tickCreated
 	}
 
@@ -135,7 +136,6 @@ class Station {
 				addEventLog(`Nanotrasen invests into critical key infrastructure at (STATION_NAME), this pays off!`, this, `gold`)
 			} else {
 				this.addRevenue(1);
-				addEventLog(`Nanotrasen invests into infrastructure and other gear at (STATION_NAME).`, this, `#000000`)
 			}
 		}
 	}
