@@ -271,7 +271,7 @@ class MalfAISuccess extends AntagMajor {
 	run(station) {
 		addEventLog(this.message, station, this.color);
 		malfai.play()
-		station.destroy();
+		station.booleans.missing = true;
 	}
 }
 
@@ -285,7 +285,7 @@ class BloodCultSuccess extends AntagMajor {
 	run(station) {
 		spanomalies.play()
 		addEventLog(this.message, station, this.color);
-		station.destroy();
+		station.booleans.missing = true;
 	}
 }
 

@@ -97,7 +97,7 @@ function importData(data) {
 				station.booleans.revolution,
 				false,
 				false,
-				station.booleans.missing,
+				station.booleans.missing || false,
 				0
 			), false, false);
 		}
@@ -147,7 +147,8 @@ function addStation(station, sound=true, disableButton=true) {
 	<span class="station_uptime"></span>|
 	<span class="station_crew"></span><br>
 	<span class="station_details"></span><br>
-	<span class="station_overtaken" style="color: #a00">OVERTAKEN</span>
+	<span class="station_overtaken" style="color: #a00"><strong>In revolutionary hands</strong></span>
+	<span class="station_missing" style="color: #a00"><strong>Disconnected from NT comm-link</strong></span>
 
 	<!-- holy shit button hell -->
 	<h3>Control Panel</h3>
@@ -156,10 +157,10 @@ function addStation(station, sound=true, disableButton=true) {
 		<button onclick="stations[getStationByTick('${station.createdOn}')].sellStation()" class="station_sell">Sell Station</button>
 		<button onclick="stations[getStationByTick('${station.createdOn}')].investStation()" class="station_invest">Invest in station</button>
 		<button onclick="stations[getStationByTick('${station.createdOn}')].sendDeathsquad()" class="station_ds">Dispatch deathsquad</button>
-		<button onclick="let station = stations[getStationByTick('${station.createdOn}')].payDemands()" class="station_demands">Pay Demands</button>
+		<button onclick="stations[getStationByTick('${station.createdOn}')].sendErt()" class="station_ert">Dispatch ERT</button>
+		<button onclick="let station = stations[getStationByTick('${station.createdOn}')].payDemands()" class="station_demands">Pay demands</button>
 
 		<!--
-		<button onclick="stations[getStationByTick('${station.createdOn}')]" class="station_ert">Send ERT</button>
 
 		shenanigans
 		<button onclick="stations[getStationByTick('${station.createdOn}')]" class="station_dsOrder">Cancel Order</button><br>

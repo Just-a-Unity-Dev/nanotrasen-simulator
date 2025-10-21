@@ -40,13 +40,13 @@ class Station {
 		this.currentTick = tickNumber; // Assign current tick BEFORE anything tick-related begins.
 		const div = document.getElementById(this.createdOn)
 
-		if (this.uptimeTick % 10 === 0) {
+		if (this.uptimeTick % 10 === 0 && !this.booleans.missing) {
 			// More crewmembers being paid well = More revenue, but more bad events
 			// Less crewmembers = Less revenue but less bad events
 			addCredits(this.booleans.revolution ? -this.rawRevenue : this.revenue);
 		}
 
-		if (this.uptimeTick % 20 === 0) {
+		if (this.uptimeTick % 20 === 0 && !this.booleans.missing) {
 			if (this.requireUpkeep && this.booleans.revolution == false) {
 				if (this.payPerCrewmember < this.desiredPPC) {
 					addEventLog("Crewmembers aboard (STATION_NAME) believe that they aren't being paid good enough for their hard work! Civil unrest increased.", this, "#aa0000")
@@ -73,12 +73,12 @@ class Station {
 
 		// Revolution
 		// div.getElementsByClassName("station_sell")[0].disabled = this.booleans.revolution
-		div.getElementsByClassName("station_invest")[0].disabled = this.booleans.revolution
-		div.getElementsByClassName("station_crewadd")[0].disabled = this.booleans.revolution
-		div.getElementsByClassName("station_crewremove")[0].disabled = this.booleans.revolution
+		div.getElementsByClassName("station_invest")[0].disabled = this.booleans.revolution || this.booleans.missing
+		div.getElementsByClassName("station_crewadd")[0].disabled = this.booleans.revolution || this.booleans.missing
+		div.getElementsByClassName("station_crewremove")[0].disabled = this.booleans.revolution || this.booleans.missing
 
 		div.getElementsByClassName("station_demands")[0].style.display = this.booleans.revolution ? "block" : "none"
-		// div.getElementsByClassName("station_ert")[0].style.display = this.booleans.revolution ? "block" : "none"
+		div.getElementsByClassName("station_ert")[0].style.display = this.booleans.missing ? "block" : "none"
 		div.getElementsByClassName("station_ds")[0].style.display = this.booleans.revolution ? "block" : "none"
 
 		div.getElementsByClassName("station_addPPC")[0].disabled = this.booleans.revolution
@@ -87,6 +87,7 @@ class Station {
 		div.getElementsByClassName("station_remmPPC")[0].disabled = this.booleans.revolution
 
 		div.getElementsByClassName("station_overtaken")[0].style.display = this.booleans.revolution ? "block" : "none"
+		div.getElementsByClassName("station_missing")[0].style.display = this.booleans.missing ? "block" : "none"
 
 		// div.getElementsByClassName("station_shuttle")[0].innerHTML = `Emergency Shuttle Status: ${this.shuttleStatus}`
 	}
@@ -149,6 +150,7 @@ class Station {
 		this.addUnrest(-100);
 		this.crew = 1;
 	}
+	sendErt() {}
 
 	addRevenue(revenue) {
 		if (this.rawRevenue > 0) {
@@ -175,7 +177,7 @@ class Station {
 
 	addCrew(crewmembers) {
 		this.crew += crewmembers
-		if (this.crew <= 0) {
+		if (this.crew <= 0 && !this.booleans.missing) {
 			// What is a station without the crew to manage it?
 			this.destroy()
 		}
