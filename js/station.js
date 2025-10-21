@@ -130,13 +130,13 @@ class Station {
 	}
 
 	get investmentPrice() {
-		return this.revenue
+		return Math.max(this.revenue, 1)
 	}
 
 	investStation() {
 		if (credits > this.investmentPrice) {
 			addCredits(-this.investmentPrice)
-			if (Math.floor(Math.random() * 100) == 0) {
+			if (randint(0, 100) == 0) {
 				this.addRevenue(100);
 				addEventLog(`Nanotrasen invests into critical key infrastructure at (STATION_NAME), this pays off!`, this, `gold`)
 			} else {
@@ -155,18 +155,46 @@ class Station {
 		this.crew = 1;
 	}
 	sendErt() {
-		addEventLog(`ERT was dispatched to exterminate (STATION_NAME) from traitors of Nanotrasen. The team succeeded.`, this, "#3c4fffff");
-		this.crew = Math.ceil(this.crew * Math.random());
-		this.rawRevenue = Math.ceil(this.rawRevenue / (2 + Math.random()));
+		const selection = randint(0, 3);
+
+		let extraMessage = ""
+
+		switch (selection) {
+			case 0:
+				extraMessage = "and reported everything was actually okay!"
+				break;
+			case 1:
+				extraMessage = "but reported a majority of the crew were killed."
+				this.crew = Math.ceil(this.crew * Math.random());
+				break;
+			case 2:
+				extraMessage = "but reported the station faced critical damage to infrastructure."
+				this.rawRevenue = Math.ceil(this.rawRevenue / (2 + Math.random()));
+				break;
+			case 3:
+				extraMessage = "and reported everything was actually way better than normal!"
+				this.rawRevenue = Math.ceil(this.rawRevenue * (2 + Math.random()));
+				break;
+			case 4:
+				extraMessage = "but reported the station required repairs."
+				if (credits > 100_000) {
+					addCredits(-100_000);
+				} else if (credits > 10_000) {
+					addCredits(-10_000);
+				} else {
+					addCredits(-1_000);
+				}
+				break;
+		}
 		this.booleans.missing = false;
 		addCredits(-500_000) // Figure out actual team management and stuff
 		this.addUnrest(-100);
+
+		addEventLog(`ERT was dispatched to investigate the missing crew of (STATION_NAME). The team succeeded, ${extraMessage}.`, this, "#63b0f3ff");
 	}
 
 	addRevenue(revenue) {
-		if (this.rawRevenue > 0) {
-			this.rawRevenue += revenue;
-		}
+		this.rawRevenue += revenue;
 	}
 
 	addUnrest(unrest, handleRevolution=true) {
