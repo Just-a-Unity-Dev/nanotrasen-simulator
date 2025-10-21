@@ -72,7 +72,7 @@ function shuffleArray(array) {
 function runRandomEvent() {
 	// Check if we have ANY stations at all. Stop yelling at me JS.
 	if (stations.length > 0) {
-		threatLevel = parseInt(Math.floor(Math.random() * 2) == 0 ? threatLevel + 10 : threatLevel - 10);
+		threatLevel = parseInt(Math.floor(Math.random() * 2) == 0 ? threatLevel + 5 : threatLevel - 5);
 
 		console.log(threatLevel);
 
@@ -86,6 +86,9 @@ function runRandomEvent() {
 		// Yes. I know this is bad. Refactor it.
 		for (let i = 0; i < eventPool.length; i++) {
 			let station = stations[Math.floor(Math.random() * stations.length)]
+			if (!station.canRunEvent)
+				continue;
+			
 			const event = eventPool[i];
 
 			// Event checks

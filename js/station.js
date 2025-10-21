@@ -190,6 +190,10 @@ class Station {
 		}
 	}
 
+	get canRunEvent() {
+		return !this.booleans.missing
+	}
+
 	get shuttleStatus() {
 		if (this.shuttleSent == 1) {
 			return "Bluespace"
