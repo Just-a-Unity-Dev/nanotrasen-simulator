@@ -129,11 +129,15 @@ class Station {
 		this.destroy();
 	}
 
+	get investmentPrice() {
+		return this.revenue
+	}
+
 	investStation() {
-		if (credits > this.revenue) {
-			addCredits(-this.revenue)
-			if (Math.random(1, 100) == 100) {
-				this.addRevenue(10);
+		if (credits > investmentPrice) {
+			addCredits(-investmentPrice)
+			if (Math.floor(Math.random() * 100) == 0) {
+				this.addRevenue(100);
 				addEventLog(`Nanotrasen invests into critical key infrastructure at (STATION_NAME), this pays off!`, this, `gold`)
 			} else {
 				this.addRevenue(1);
