@@ -8,7 +8,7 @@ class Event {
 	name = "Null";
 	message = "Nothing. What did you expect."
 	color = "#000000"
-	threat = null;
+	threat = -1;
 
 	changedCredits = 0
 	changedRevenue = 0
