@@ -45,13 +45,20 @@
 			<summary>%body.stations (<span id="stationsAmount">0/5</span>)</summary>
 			<button onclick="buyStation()" id="buyStation">%body.buyStation</button>
 			<div id="stations">
+			</div><br>
+		</details>
+		<details id="militarycontent" style="display: none;">
+			<summary>%body.military (<span id="militaryAmount">0/0</span>)</summary>
+			<button onclick="trainUnit(0)" id="trainDeathsquad">%body.trainDS</button>
+			<div id="stations">
 			</div>
-		</div><br>
+		</details><br>
 		<details id="events" open>
 			<summary><span>%body.events</span> <button onclick="clearEvents()">%body.clearEvents</button></summary>
-			<p style="color: gray;">%events.nothingHappening</p>
 			<div id="eventsbox"></div>
-		</div><br>
+				<p style="color: gray;">%events.nothingHappening</p>
+			</div><br>
+		</details>
 	</div>
 </body>
 </html>
