@@ -184,9 +184,11 @@ class Station {
 	}
 
 	buyCrew(crewmembers) {
-		if (credits >= this.crewmemberPrice) {
+		if (this.booleans.missing || this.booleans.revolution)
+			return;
+		if (credits >= this.crewmemberPrice * crewmembers) {
 			this.addCrew(crewmembers);
-			addCredits(-this.crewmemberPrice);
+			addCredits(-this.crewmemberPrice * crewmembers);
 		}
 	}
 
@@ -234,3 +236,5 @@ class Station {
 		return this.desiredPPC + this.offsetPPC
 	}
 }
+
+dummyStation = new Station("", 0,0,0,[]);

@@ -30,12 +30,37 @@ function addCredits(credits_added) {
  */
 function buyStationCapacity() {
 	if (credits >= capacityPrice) {
-		addEventLog(loc.formatString("%events.buyStationCapacity", [capacityPrice]), new Station("", 0,0,0,[]), "#00aa00")
+		addEventLog(loc.formatString("%events.buyStationCapacity", [capacityPrice]), dummyStation, "#00aa00")
 		addCredits(-capacityPrice)
 		maxStations++;
 		capacityPrice = Math.floor(capacityPrice *= 1.5);
 		document.getElementById("stationsAmount").innerHTML = `${stationsBought}/${maxStations}`
 		document.getElementById("capacityPrice").innerHTML = `(${capacityPrice})`
+	}
+}
+
+let dummyStation;
+
+function massBuyInvestment() {
+}
+
+function massBuyCrew() {
+	let failedStations = 0;
+	let totalPrice = 0;
+	stations.forEach(station => {
+		const price = station.crewmemberPrice * 5
+		console.log(station);
+		if (credits > price) {
+			station.buyCrew(5);
+			totalPrice += price;
+		} else {
+			failedStations++;
+		}
+	});
+	if (failedStations <= 0) {
+		addEventLog(loc.formatString("%events.massBuyCrew", [totalPrice]), dummyStation, "#00aa00")
+	} else {
+		addEventLog(loc.formatString("%events.massBuyCrewALOF", [totalPrice, failedStations]), dummyStation, "#00aa00")
 	}
 }
 
